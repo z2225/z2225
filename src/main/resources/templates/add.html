@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width:600px;height:100%;margin-left:270px;">
+    <form action="/add" method="post">
+        <!--        form-control给input添加这个class后就会使用bootstrap自带的input框-->
+        姓名：<input class="form-control" type="text" th:value="${name}" name="name"><br>
+        <!--注意参数的拼接-->
+        学号：<input class="form-control" type="text" th:value="${opinion}" name="opinion"><br>
+        <button class="btn btn-primary btn-lg btn-block">保存</button>
+    </form>
+</div>
+</body>
+</html>

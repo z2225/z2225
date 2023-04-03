@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhuwang.mapper.UserMapper">
+    <insert id="addUser">
+        insert into student (name,gender,opinion,fileName,nfileName,fileUrl) value(#{name},#{gender
+        },#{opinion},#{fileName},#{nfileName},#{fileUrl})
+    </insert>
+    <select id="query" resultType="com.zhuwang.dao.User">
+        select t.name,z.bname gender,t.ip,group_concat(c.name)  cnames,t.opinion,t.ip
+        from student t left join stu_cours s on t.id = s.sid
+                       left join cours c on s.cid =c.id
+                       left join clazz z on z.id = t.gender
+        group by t.name,t.gender,t.opinion,t.ip
+        order by t.ip
+    </select>
+    <select id="queryXs" resultType="map">
+        select * from student where id =#{id}
+    </select>
+    <select id="queryBj" resultType="map">
+        select bname name,id value from clazz
+    </select>
+    <select id="queryKc" resultType="map">
+        select  name,id value from cours
+    </select>
+    <insert id="BatchAdd">
+        insert into stu_cours(sid,cid) values
+            <foreach collection="user.skills" separator="," item="item">
+                ((select max(id) from student),#{item})
+            </foreach>
+    </insert>
+    <delete id="del">
+        delete from student where id =#{id}
+    </delete>
+    <delete id="dels">
+        delete from stu_cours where sid=#{id}
+    </delete>
+    <select id="querys" resultType="com.zhuwang.dao.User">
+        select * from student
+    </select>
+
+</mapper>

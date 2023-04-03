@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width:600px;height:100%;margin-left:270px;">
+    <form action="/update" method="post">
+        <!-- rest风格中的更新是put请求，
+        所以这块先使用post请求，然后隐藏起来改为put请求-->
+        <input name="_method" type="hidden" value="put">
+        用户名：<input class="form-control" type="text" th:value="${user.name}" name="name"><br>
+        密 码：<input class="form-control" type="text" th:value="${user.opinion}" name="opinion"><br>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">提交</button>
+    </form>
+</div>
+
+</body>
+</html>
